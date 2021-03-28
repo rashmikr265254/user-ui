@@ -1,0 +1,23 @@
+<form class="form-internal">
+    <div class="row">
+      <div class="col-8">
+        <input type="text" class="form-control" name="search" [(ngModel)]="searchString" (ngModelChange)="refreshUsers()" placeholder="Search Users">
+      </div>
+      <div class="col-2">
+        <button class="btn btn-danger" [disabled]="users.length === 0" (click)="removeAllUsers()">Remove All</button>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-primary" (click)="addUser()">Add New User</button>
+      </div>
+    </div>
+  </form>
+  <div class="row card-container">
+    <div *ngFor="let user of filteredUsers" class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ user.getName() }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Age - {{ user.getAge() }}</h6>
+        <p class="card-text" *ngIf="user.getAddress && user.getAddress()">{{ user.getAddress() }}</p>
+        <a href="#" class="btn btn-outline-danger" (click)="removeUser(user.getId())">Remove User</a>
+      </div>
+    </div>
+</div>

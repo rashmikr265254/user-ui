@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row">
+        <h2>Template Driven</h2>
+    </div>
+    <form>
+        <div class="row">
+            <div class="col">
+                <input type="text" name="name-template" class="form-control" (ngModelChange)="validateTemplate()" [(ngModel)]="user.name" placeholder="Name of User">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="number" name="age-template" class="form-control" (ngModelChange)="validateTemplate()" [(ngModel)]="user.age" placeholder="Age">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="text" name="address-template" class="form-control" (ngModelChange)="validateTemplate()" [(ngModel)]="user.address" placeholder="Address [Optional]">
+            </div>
+        </div>
+        <div class="alert alert-success" *ngIf="templateUserAdded" role="alert">
+            User Added Succesfully!
+        </div>
+        <div class="row">
+            <div class="col buttons">
+                <button class="btn btn-primary" [disabled]="!isTemplateDrivenControlsCorrect" (click)="addUserTemplate()">Add</button>
+                <button class="btn btn-secondary" (click)="clearTemplate()">Clear</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <h2>Reactive Form</h2>
+    </div>
+    <form [formGroup]="userForm">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" formControlName="name" required placeholder="Name of User">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="number" class="form-control" formControlName="age" required placeholder="Age">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" formControlName="address" placeholder="Address [Optional]">
+            </div>
+        </div>
+        <div class="alert alert-success" *ngIf="reactiveUserAdded" role="alert">
+            User Added Succesfully!
+        </div>
+        <div class="row">
+            <div class="col buttons">
+                <button class="btn btn-primary" [disabled]="!userForm.valid" (click)="addUserReactive()">Add</button>
+                <button class="btn btn-secondary" (click)="clearReactive()">Clear</button>
+            </div>
+        </div>
+    </form>
+</div>
